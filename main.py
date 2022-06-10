@@ -30,8 +30,22 @@ def index():
 
 @app.route("/", methods=['POST'])
 def move():
-    request.get_data()
-    logger.info(request.json)
+    # request.get_data()
+    data = request.json
+    logger.info(data['arena']['state'])
+    st = data['arena']['state']
+    x = st['https://cloud-run-hackathon-python-q2rcemnqbq-uc.a.run.app']['x']
+    y = st['https://cloud-run-hackathon-python-q2rcemnqbq-uc.a.run.app']['y']
+    dir = st['https://cloud-run-hackathon-python-q2rcemnqbq-uc.a.run.app']['direction']
+    bots = []
+    st = data
+    for player in st:
+        bot=[]
+        bot['x'] = int(player['x'])
+        bot['y'] = int(player['y'])
+        bot['dir'] = player['direction']
+        bots.append(bot)
+    logger.info(bots)
     return moves[random.randrange(len(moves))]
 
 if __name__ == "__main__":
