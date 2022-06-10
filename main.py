@@ -39,7 +39,6 @@ def move():
     dir = st['https://cloud-run-hackathon-python-q2rcemnqbq-uc.a.run.app']['direction']
 
     bots = []
-    st = data
     for i in st:
         bot = {'x': st[i]['x'], 'y': st[i]['y'], 'direction': st[i]['direction'],}
         bots.append(bot)
