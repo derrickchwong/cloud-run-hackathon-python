@@ -22,7 +22,7 @@ logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
-moves = ['F', 'T', 'L', 'R']
+moves = ['F', 'L', 'R']
 
 @app.route("/", methods=['GET'])
 def index():
@@ -38,12 +38,13 @@ def move():
     y = st['https://cloud-run-hackathon-python-q2rcemnqbq-uc.a.run.app']['y']
     dir = st['https://cloud-run-hackathon-python-q2rcemnqbq-uc.a.run.app']['direction']
 
-    bots = []
+    line = []
     for i in st:
-        bot = {'x': st[i]['x'], 'y': st[i]['y'], 'direction': st[i]['direction'],}
-        bots.append(bot)
+        if st[i]['x'] == x or st[i]['y'] == y:
+            bot = {'x': st[i]['x'], 'y': st[i]['y'], 'direction': st[i]['direction'],}
+            line.append(bot)
         
-    line = [i for i in bots if i['x']==x or i['y']==y]
+    # line = [i for i in bots if i['x']==x or i['y']==y]
     if dir == 'E':
         for i in line:
             if i['x'] - 3 <= x < i['x']:
