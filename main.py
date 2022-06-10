@@ -32,6 +32,14 @@ def index():
 def move():
     request.get_data()
     logger.info(request.json)
+    bots = []
+    for player in st:
+        bot=[]
+        bot['x'] = int(player['x'])
+        bot['y'] = int(player['y'])
+        bot['dir'] = player['direction']
+        bots.append(bot)
+    logger.info(bots)
     return moves[random.randrange(len(moves))]
 
 if __name__ == "__main__":
