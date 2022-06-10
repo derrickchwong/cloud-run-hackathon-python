@@ -32,8 +32,8 @@ def index():
 def move():
     # request.get_data()
     data = request.json
-    logger.info(data['arena']['state'])
     st = data['arena']['state']
+    logger.info(st)
     x = st['https://cloud-run-hackathon-python-q2rcemnqbq-uc.a.run.app']['x']
     y = st['https://cloud-run-hackathon-python-q2rcemnqbq-uc.a.run.app']['y']
     dir = st['https://cloud-run-hackathon-python-q2rcemnqbq-uc.a.run.app']['direction']
@@ -41,10 +41,7 @@ def move():
     bots = []
     st = data
     for i in st:
-        bot=[]
-        bot['x'] = int(st[i]['x'])
-        bot['y'] = int(st[i]['y'])
-        bot['dir'] = st[i]['direction']
+        bot = {'x': st[i]['x'], 'y': st[i]['y'], 'direction': st[i]['direction'],}
         bots.append(bot)
         
     line = [i for i in bots if i['x']==x or i['y']==y]
