@@ -40,13 +40,16 @@ def move():
     wasHit = st['https://cloud-run-hackathon-python-q2rcemnqbq-uc.a.run.app']['wasHit']
 
     line = [{'x': st[i]['x'], 'y': st[i]['y'], 'direction': st[i]['direction'],} for i in st if st[i]['x'] == x or st[i]['y'] == y]
+
+    if wasHit and not any(line):
+        return 'F'
     # for i in st:
     #     if st[i]['x'] == x or st[i]['y'] == y:
     #         bot = {'x': st[i]['x'], 'y': st[i]['y'], 'direction': st[i]['direction'],}
     #         line.append(bot)
         
     # line = [i for i in bots if i['x']==x or i['y']==y]
-    if dir == 'E':
+    elif dir == 'E':
         for i in line:
             if i['x'] - 3 <= x < i['x']:
                 return 'T'
