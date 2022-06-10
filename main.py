@@ -37,15 +37,34 @@ def move():
     x = st['https://cloud-run-hackathon-python-q2rcemnqbq-uc.a.run.app']['x']
     y = st['https://cloud-run-hackathon-python-q2rcemnqbq-uc.a.run.app']['y']
     dir = st['https://cloud-run-hackathon-python-q2rcemnqbq-uc.a.run.app']['direction']
+
     bots = []
     st = data
-    for player in st:
+    for i in st:
         bot=[]
-        bot['x'] = int(player['x'])
-        bot['y'] = int(player['y'])
-        bot['dir'] = player['direction']
+        bot['x'] = int(st[i]['x'])
+        bot['y'] = int(st[i]['y'])
+        bot['dir'] = st[i]['direction']
         bots.append(bot)
-    logger.info(bots)
+        
+    line = [i for i in bots if i['x']==x or i['y']==y]
+    if dir == 'E':
+        for i in line:
+            if i['x'] - 3 <= x < i['x']:
+                return 'T'
+    elif dir == 'N':
+        for i in line:
+            if i['y'] + 3 >= y > i['y']:
+                return 'T'
+    elif dir == 'W':
+        for i in line:
+            if i['x'] + 3 >= x > i['x']:
+                return 'T'
+    elif dir == 'S':
+        for i in line:
+            if i['y'] - 3 <= y < i['y']:
+                return 'T'
+
     return moves[random.randrange(len(moves))]
 
 if __name__ == "__main__":
