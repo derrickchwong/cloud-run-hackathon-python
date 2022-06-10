@@ -37,7 +37,7 @@ def move():
     x = st['https://cloud-run-hackathon-python-q2rcemnqbq-uc.a.run.app']['x']
     y = st['https://cloud-run-hackathon-python-q2rcemnqbq-uc.a.run.app']['y']
     dir = st['https://cloud-run-hackathon-python-q2rcemnqbq-uc.a.run.app']['direction']
-    wasHit = st['https://cloud-run-hackathon-python-q2rcemnqbq-uc.a.run.app']['watHit']
+    wasHit = st['https://cloud-run-hackathon-python-q2rcemnqbq-uc.a.run.app']['wasHit']
 
     line = [{'x': st[i]['x'], 'y': st[i]['y'], 'direction': st[i]['direction'],} for i in st if st[i]['x'] == x or st[i]['y'] == y]
     # for i in st:
