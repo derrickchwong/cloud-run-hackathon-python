@@ -37,12 +37,13 @@ def move():
     x = st['https://cloud-run-hackathon-python-q2rcemnqbq-uc.a.run.app']['x']
     y = st['https://cloud-run-hackathon-python-q2rcemnqbq-uc.a.run.app']['y']
     dir = st['https://cloud-run-hackathon-python-q2rcemnqbq-uc.a.run.app']['direction']
+    wasHit = st['https://cloud-run-hackathon-python-q2rcemnqbq-uc.a.run.app']['watHit']
 
-    line = []
-    for i in st:
-        if st[i]['x'] == x or st[i]['y'] == y:
-            bot = {'x': st[i]['x'], 'y': st[i]['y'], 'direction': st[i]['direction'],}
-            line.append(bot)
+    line = [{'x': st[i]['x'], 'y': st[i]['y'], 'direction': st[i]['direction'],} for i in st if st[i]['x'] == x or st[i]['y'] == y]
+    # for i in st:
+    #     if st[i]['x'] == x or st[i]['y'] == y:
+    #         bot = {'x': st[i]['x'], 'y': st[i]['y'], 'direction': st[i]['direction'],}
+    #         line.append(bot)
         
     # line = [i for i in bots if i['x']==x or i['y']==y]
     if dir == 'E':
