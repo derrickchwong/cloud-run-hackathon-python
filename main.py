@@ -33,7 +33,7 @@ def move():
     # request.get_data()
     data = request.json
     st = data['arena']['state']
-    my = st['https://cloud-run-hackathon-python-q2rcemnqbq-uc.a.run.app']
+    my = st['https://cloud-run-hackathon-python-hx5ruhwpla-uc.a.run.app']
     x = my['x']
     y = my['y']
     dir = my['direction']
