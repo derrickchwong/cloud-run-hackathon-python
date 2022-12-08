@@ -1,2 +1,3 @@
-Flask==2.1.1
+fastapi 
+uvicorn
 itsdangerous>=2.0
