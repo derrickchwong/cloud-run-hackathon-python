@@ -16,24 +16,26 @@
 import os
 import logging
 import random
-from flask import Flask, request
+from fastapi import Request, FastAPI
 
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 logger = logging.getLogger(__name__)
 
-app = Flask(__name__)
+app = FastAPI()
 moves = ['F', 'L', 'R']
 
-@app.route("/", methods=['GET'])
+@app.get("/")
 def index():
     return "Let the battle begin!"
 
-@app.route("/", methods=['POST'])
-def move():
+@app.post('/')
+def move(request: Request):
     # request.get_data()
-    data = request.json
+    print(request)
+    print(request.json())
+    return moves[random.randrange(len(moves))]
     st = data['arena']['state']
-    my = st['https://cloud-run-hackathon-python-hx5ruhwpla-uc.a.run.app']
+    my = st['https://cloud-run-hackathon-python-ujmnd5v4va-uc.a.run.app']
     x = my['x']
     y = my['y']
     dir = my['direction']
@@ -62,7 +64,3 @@ def move():
                 return 'T'
 
     return moves[random.randrange(len(moves))]
-
-if __name__ == "__main__":
-  app.run(debug=False,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
-  
